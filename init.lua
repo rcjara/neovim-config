@@ -2,6 +2,12 @@ function P(obj)
   print (vim.inspect(obj))
 end
 
+-----------------------------------
+-- make sure plugins are a thing --
+-----------------------------------
+require('plugins')
+require('nvim_treesitter')
+
 --------------------
 -- global options --
 --------------------
@@ -9,6 +15,10 @@ end
 -- status line
 -- todo: figure out status line
 -- vim.opt.statusline = '%-50(%-0f%-0m%-0r%-0h%) %(%l/%L%)'
+
+-- colors
+vim.opt.background = 'dark'
+vim.cmd('colorscheme solarized')
 
 -- line numbers
 vim.opt.number = true
@@ -32,7 +42,6 @@ vim.opt.listchars = ''
 vim.opt.listchars:append('eol:¬')
 vim.opt.listchars:append('tab:▸ ')
 vim.opt.listchars:append('nbsp:¤')
-P(vim.opt.listchars:get())
 
 -------------------
 -- Global remaps --
@@ -91,9 +100,21 @@ nmap('<leader>cx', ':let @/ = ""<CR>')
 -- autocommands --
 ------------------
 
--- remove trailing whitespace
 -- todo: remove vim.cmd
-vim.cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
+vim.cmd([[
+  augroup remove_trailing_whitespace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+  augroup end
+]])
+
+-- todo: remove vim.cmd
+vim.cmd([[
+  augroup reload_init_lua_on_save
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source <afile>
+  augroup end
+]])
 
 -- Don't put anything after this
-print "init.lua loaded again"
+print "init.lua loaded"
