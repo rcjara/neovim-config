@@ -5,8 +5,8 @@ end
 -----------------------------------
 -- make sure plugins are a thing --
 -----------------------------------
-require('plugins')
-require('nvim_treesitter')
+require('packer_config')
+require('nvim_treesitter_config')
 
 --------------------
 -- global options --
@@ -49,17 +49,8 @@ vim.opt.listchars:append('nbsp:¤')
 
 vim.g.mapleader = ','
 
-local function map(mode, lhs, rhs)
-  vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true })
-end
-
-local function nmap(lhs, rhs)
-  map('n', lhs, rhs)
-end
-
-local function imap(lhs, rhs)
-  map('i', lhs, rhs)
-end
+local nmap = require('utils').remaps.nmap
+local imap = require('utils').remaps.imap
 
 --escape
 imap('jj', '<Esc>')
