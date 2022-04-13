@@ -7,6 +7,7 @@ end
 -----------------------------------
 require('packer_config')
 require('nvim_treesitter_config')
+require('telescope_config')
 
 --------------------
 -- global options --
