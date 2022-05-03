@@ -1,11 +1,3 @@
---autocommand to load this file on save
-vim.cmd([[
-  augroup nvim_treesitter_config
-    autocmd!
-    autocmd BufWritePost nvim_treesitter.lua source <afile>
-  augroup end
-]])
-
 local ts_langs = {
   'bash',
   'c',
@@ -49,3 +41,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = true,
   },
 }
+
+local utils = require('utils')
+utils.setup_au_reload_command()
+utils.print_filename_on_reload()

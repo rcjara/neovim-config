@@ -1,17 +1,11 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost telescope.lua source <afile> | PackerUpdate
-  augroup end
-]])
-
 local nmap = require('utils').remaps.nmap
 local telescope = require('telescope.builtin')
-local tel_cmd = function(cmd)
-  return ':Telescope ' .. cmd .. '<CR>'
-end
 
-nmap('ff', tel_cmd('find_files'))
-nmap('fg', tel_cmd('live_grep'))
-nmap('fb', tel_cmd('buffers'))
-nmap('fh', tel_cmd('help_tags'))
+nmap('ff', function() telescope.find_files() end)
+nmap('fg', function() telescope.live_grep() end)
+nmap('fb', function() telescope.buffers() end)
+nmap('fh', function() telescope.help_tags() end)
+
+local utils = require('utils')
+utils.setup_au_reload_command()
+utils.print_filename_on_reload()

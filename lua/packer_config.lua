@@ -1,11 +1,5 @@
---autocommand to load this file on save
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerUpdate
-  augroup end
-]])
-
+local utils = require('utils')
+utils.setup_au_reload_command()
 
 return require('packer').startup(function()
   -------------------
@@ -28,5 +22,6 @@ return require('packer').startup(function()
       requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  print "plugins loaded"
+  utils.print_filename_on_reload()
 end)
+

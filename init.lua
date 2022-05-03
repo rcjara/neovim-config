@@ -1,3 +1,4 @@
+
 function P(obj)
   print (vim.inspect(obj))
 end
@@ -92,21 +93,14 @@ nmap('<leader>cx', ':let @/ = ""<CR>')
 -- autocommands --
 ------------------
 
--- todo: remove vim.cmd
-vim.cmd([[
-  augroup remove_trailing_whitespace
-    autocmd!
-    autocmd BufWritePre * :%s/\s\+$//e
-  augroup end
-]])
+local remove_trailing_whitespace = vim.api.nvim_create_augroup('remove_trailing_whitespace', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  command = '%s/\\s\\+$//e',
+  group = remove_trailing_whitespace
+})
 
--- todo: remove vim.cmd
-vim.cmd([[
-  augroup reload_init_lua_on_save
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source <afile>
-  augroup end
-]])
 
--- Don't put anything after this
-print "init.lua loaded"
+local utils = require('utils')
+utils.setup_au_reload_command()
+utils.print_filename_on_reload()
