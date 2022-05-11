@@ -93,6 +93,7 @@ nmap('<leader>cx', ':let @/ = ""<CR>')
 require('packer_config')
 require('nvim_treesitter_config')
 require('telescope_config')
+require('nvim_lspconfig_config')
 
 ------------------
 -- autocommands --

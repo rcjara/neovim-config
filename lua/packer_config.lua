@@ -26,6 +26,12 @@ return require('packer').startup(function()
       }
   }
 
+  -- Collection of configurations for the built-in LSP client
+  use 'neovim/nvim-lspconfig'
+
+  -- snippets
+  use 'L3MON4D3/LuaSnip'
+
   utils.print_filename_on_reload()
 end)
 
