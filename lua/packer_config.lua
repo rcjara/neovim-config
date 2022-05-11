@@ -1,5 +1,6 @@
 local utils = require('utils')
-utils.setup_au_reload_command()
+utils.setup_au_reload_command({'PackerInstall','PackerCompile'})
+
 
 return require('packer').startup(function()
   -------------------
@@ -14,12 +15,15 @@ return require('packer').startup(function()
   use {
         'nvim-treesitter/nvim-treesitter',
           run = ':TSUpdate all'
-    }
+  }
 
   -- telescope, fzf style search and autocomplete
   use {
     'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = {
+        {'nvim-lua/plenary.nvim'},
+        {'nvim-telescope/telescope-fzy-native.nvim'}
+      }
   }
 
   utils.print_filename_on_reload()

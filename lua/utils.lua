@@ -23,20 +23,29 @@ M.remaps = {
 
 M.print_filename_on_reload = function()
   print(this_file_rel() .. ' loaded')
-  print(' ')
 end
 
-M.setup_au_reload_command = function()
+M.setup_au_reload_command = function(addl_cmds)
   local source = debug.getinfo(2, "S").source
   local source, _ = string.gsub(source, '@', '', 1)
   local group_name = 'reload ' .. source
   local augroup = vim.api.nvim_create_augroup(group_name, { clear = true })
-  print('group_name: ' .. group_name)
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    pattern = source,
-    command = 'source <afile>',
-    group = augroup
-  })
+  local add_cmd = function(cmd)
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      pattern = source,
+      command = cmd,
+      group = augroup
+    })
+  end
+  add_cmd('source <afile>')
+
+  if type(addl_cmds) == 'string' then
+    add_cmd(addl_cmds)
+  elseif type(addl_cmds) == 'table' then
+    for _, cmd in ipairs(addl_cmds) do
+      add_cmd(cmd)
+    end
+  end
 end
 
 

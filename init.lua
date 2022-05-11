@@ -2,17 +2,14 @@
 function P(obj)
   print (vim.inspect(obj))
 end
-
------------------------------------
--- make sure plugins are a thing --
------------------------------------
-require('packer_config')
-require('nvim_treesitter_config')
-require('telescope_config')
-
 --------------------
 -- global options --
 --------------------
+
+--------------
+-- spelling --
+--------------
+vim.opt.spelllang = 'en_us'
 
 -- status line
 -- todo: figure out status line
@@ -89,6 +86,14 @@ nmap('zt', 'zt5<C-Y>')
 -- clear search
 nmap('<leader>cx', ':let @/ = ""<CR>')
 
+
+-------------------------------
+-- individual plugin configs --
+-------------------------------
+require('packer_config')
+require('nvim_treesitter_config')
+require('telescope_config')
+
 ------------------
 -- autocommands --
 ------------------
@@ -99,7 +104,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = '%s/\\s\\+$//e',
   group = remove_trailing_whitespace
 })
-
 
 local utils = require('utils')
 utils.setup_au_reload_command()
