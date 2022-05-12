@@ -86,7 +86,14 @@ nmap('zt', 'zt5<C-Y>')
 
 -- clear search
 nmap('<leader>cx', ':let @/ = ""<CR>')
+--
+---------------------
+-- Terminal remaps --
+---------------------
 
+local tmap = utils.remaps.tmap
+
+tmap('<Esc>','<C-\\><C-N>')
 
 -------------------------------
 -- individual plugin configs --

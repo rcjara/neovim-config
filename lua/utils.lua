@@ -18,7 +18,10 @@ M.remaps = {
   end,
   imap = function(lhs, rhs)
     map('i', lhs, rhs)
-  end
+  end,
+  tmap = function(lhs, rhs)
+    map('t', lhs, rhs)
+  end,
 }
 
 M.print_filename_on_reload = function()
