@@ -1,3 +1,4 @@
+local utils = require('utils')
 
 function P(obj)
   print (vim.inspect(obj))
@@ -48,8 +49,8 @@ vim.opt.listchars:append('nbsp:¤')
 
 vim.g.mapleader = ','
 
-local nmap = require('utils').remaps.nmap
-local imap = require('utils').remaps.imap
+local nmap = utils.remaps.nmap
+local imap = utils.remaps.imap
 
 --escape
 imap('jj', '<Esc>')
@@ -90,10 +91,11 @@ nmap('<leader>cx', ':let @/ = ""<CR>')
 -------------------------------
 -- individual plugin configs --
 -------------------------------
-require('packer_config')
-require('nvim_treesitter_config')
-require('telescope_config')
-require('nvim_lspconfig_config')
+-- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
+require('plugin-configs/packer')
+require('plugin-configs/nvim-treesitter')
+require('plugin-configs/telescope')
+require('plugin-configs/nvim-lspconfig')
 
 ------------------
 -- autocommands --
@@ -106,6 +108,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = remove_trailing_whitespace
 })
 
-local utils = require('utils')
 utils.setup_au_reload_command()
 utils.print_filename_on_reload()
