@@ -40,6 +40,8 @@ return packer.startup(function()
       }
   }
 
+  use 'xiyaowong/telescope-emoji.nvim'
+
   utils.print_filename_on_reload()
 end)
 
