@@ -101,8 +101,9 @@ tmap('<Esc>','<C-\\><C-N>')
 -- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
 require('plugin-configs/packer')
 require('plugin-configs/nvim-treesitter')
-require('plugin-configs/telescope')
 require('plugin-configs/nvim-lspconfig')
+require('plugin-configs/telescope')
+require('plugin-configs/nvim-cmp')
 
 ------------------
 -- autocommands --
