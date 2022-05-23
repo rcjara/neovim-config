@@ -102,6 +102,7 @@ tmap('<Esc>','<C-\\><C-N>')
 require('plugin-configs/packer')
 require('plugin-configs/nvim-treesitter')
 require('plugin-configs/nvim-lspconfig')
+require('plugin-configs/luasnip')
 require('plugin-configs/telescope')
 require('plugin-configs/nvim-cmp')
 
