@@ -24,6 +24,17 @@ M.remaps = {
   end,
 }
 
+M.path = {
+  basename = function(path)
+    local basename = string.match(path, '[^/]+$')
+    if basename then
+      return basename
+    else
+      return path
+    end
+  end
+}
+
 M.print_filename_on_reload = function()
   print(this_file_rel() .. ' loaded')
 end
