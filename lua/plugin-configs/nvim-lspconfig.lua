@@ -48,7 +48,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 require('lspconfig').sumneko_lua.setup {
   on_attach = on_attach,
@@ -76,6 +77,14 @@ require('lspconfig').sumneko_lua.setup {
 
     },
   },
+}
+
+require('lspconfig').rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {}
+  }
 }
 
 utils.setup_au_reload_command()
