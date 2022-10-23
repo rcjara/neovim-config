@@ -1,5 +1,19 @@
 local M = {}
 
+function P(obj)
+  print (vim.inspect(obj))
+end
+
+local function Y(obj, reg)
+  if not reg then
+    reg = '"'
+  end
+  vim.fn.setreg(reg, vim.inspect(obj))
+end
+
+M.P = P
+M.Y = Y
+
 local function map(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { noremap = true })
 end

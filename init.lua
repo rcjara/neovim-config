@@ -1,8 +1,5 @@
 local utils = require('utils')
-
-function P(obj)
-  print (vim.inspect(obj))
-end
+--
 --------------------
 -- global options --
 --------------------
