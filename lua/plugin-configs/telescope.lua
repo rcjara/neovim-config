@@ -2,8 +2,6 @@ local nmap = require('utils').remaps.nmap
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
-telescope.load_extension('emoji')
-
 telescope.setup {
   defaults = {
     prompt_prefix = "= ",
@@ -26,12 +24,13 @@ telescope.setup {
   },
 }
 
+
 nmap('<leader>ff', builtin.find_files)
 nmap('<leader>fg', builtin.live_grep)
 nmap('<leader>fb', builtin.buffers)
 nmap('<leader>fh', builtin.help_tags)
 
--- todo: this only seems to work after reloading this file.  why?
+telescope.load_extension('emoji')
 nmap('<leader>em', telescope.extensions.emoji.emoji)
 
 local utils = require('utils')
