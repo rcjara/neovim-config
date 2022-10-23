@@ -1,5 +1,6 @@
 local utils = require('utils')
 
+
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
@@ -16,7 +17,7 @@ local f = ls.function_node
 -- local m = require("luasnip.extras").m
 -- local lambda = require("luasnip.extras").l
 
-ls.add_snippets("lua", {
+local snips = {
   s("snip", t({
     'local ls = require("luasnip")',
     'local s = ls.snippet',
@@ -39,7 +40,7 @@ ls.add_snippets("lua", {
     f(function(args, _snip, _opts)
       local path = args[1][1]
       if path then
-        return utils.path.basename(path)
+        return utils.path.basename(path):gsub('-','_')
       else
         return "default"
       end
@@ -48,4 +49,6 @@ ls.add_snippets("lua", {
     i(1),
     t('")')
   }),
-})
+}
+
+return snips
