@@ -114,5 +114,16 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = remove_trailing_whitespace
 })
 
+local run_rust_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group =  run_rust_fmt,
+  pattern = '*.rs',
+  callback = function (_bufnr)
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    vim.schedule(function () vim.cmd("!rustfmt %") end)
+    vim.schedule(function () vim.api.nvim_win_set_cursor(0, cursor) end)
+  end
+})
+
 utils.setup_au_reload_command()
 utils.print_filename_on_reload()
