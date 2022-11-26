@@ -11,7 +11,17 @@ telescope.setup {
         -- this line currently does nothing, even though I believe it should turn off a telescope default key command
         ['<C-t>'] = false,
       }
-    }
+    },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '-u' -- also search in gitignore files
+    },
   },
   extensions = {
     emoji = {
