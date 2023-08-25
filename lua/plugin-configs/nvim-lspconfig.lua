@@ -24,14 +24,14 @@ local on_attach = function(client, bufnr)
   nmap('gd', vim.lsp.buf.definition)
   nmap('gi', vim.lsp.buf.implementation)
   nmap('gr', vim.lsp.buf.references)
-  nmap('<leader>lk', vim.lsp.buf.signature_help)
-  nmap('<leader>lwa', vim.lsp.buf.add_workspace_folder)
-  nmap('<leader>lwr', vim.lsp.buf.remove_workspace_folder)
-  nmap('<leader>lD', vim.lsp.buf.type_definition)
-  nmap('<leader>lrn', vim.lsp.buf.rename)
-  nmap('<leader>lca', vim.lsp.buf.code_action)
-  nmap('<leader>lf', vim.lsp.buf.formatting)
-  nmap('<leader>lwl', function () print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
+  nmap('<leader>ck', vim.lsp.buf.signature_help)
+  nmap('<leader>cwa', vim.lsp.buf.add_workspace_folder)
+  nmap('<leader>cwr', vim.lsp.buf.remove_workspace_folder)
+  nmap('<leader>cD', vim.lsp.buf.type_definition)
+  nmap('<leader>cr', vim.lsp.buf.rename)
+  nmap('<leader>ca', vim.lsp.buf.code_action)
+  nmap('<leader>cf', vim.lsp.buf.formatting)
+  nmap('<leader>cwl', function () print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 
   print(client.name .. ' language server attached')
 end
@@ -51,7 +51,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -79,13 +79,14 @@ require('lspconfig').sumneko_lua.setup {
   },
 }
 
-require('lspconfig').rust_analyzer.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {}
-  }
-}
+-- rust config is handled by simrat's rust-tools
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = on_attach,
+  },
+})
 
 utils.setup_au_reload_command()
 utils.print_filename_on_reload()

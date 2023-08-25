@@ -19,12 +19,18 @@ return packer.startup(function()
   -- treesitter highlighting, colors, etc.
   use {
         'nvim-treesitter/nvim-treesitter',
-          run = ':TSUpdate all'
+          run = ':TSUpdate'
   }
 
   -- Collection of configurations for the built-in LSP client
   use 'neovim/nvim-lspconfig'
+  use 'simrat39/rust-tools.nvim'  -- rust lps config
 
+  -- lsp / dap / linters installation and configurations
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+
+  --
   -- snippets
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'

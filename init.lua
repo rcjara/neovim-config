@@ -98,6 +98,7 @@ tmap('<Esc>','<C-\\><C-N>')
 -- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
 require('plugin-configs/packer')
 require('plugin-configs/nvim-treesitter')
+require('plugin-configs/mason')
 require('plugin-configs/nvim-lspconfig')
 require('plugin-configs/luasnip')
 require('plugin-configs/telescope')
@@ -120,7 +121,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.rs',
   callback = function (_bufnr)
     local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.schedule(function () vim.cmd("!rustfmt %") end)
+    -- todo: maybe used the language server
+    vim.schedule(function () vim.cmd("!rustfmt --edition 2021 %") end)
     vim.schedule(function () vim.api.nvim_win_set_cursor(0, cursor) end)
   end
 })
