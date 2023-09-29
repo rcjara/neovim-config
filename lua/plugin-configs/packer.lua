@@ -30,10 +30,12 @@ return packer.startup(function()
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
-  --
   -- snippets
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
+
+  -- coq
+  use 'whonore/Coqtail'
 
   ---------------------
   -- code completion --
