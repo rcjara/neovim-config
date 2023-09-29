@@ -51,7 +51,9 @@ table.insert(runtime_path, "lua/?/init.lua")
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-require('lspconfig').lua_ls.setup {
+local lspconfig = require('lspconfig')
+
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -78,6 +80,20 @@ require('lspconfig').lua_ls.setup {
     },
   },
 }
+
+lspconfig.ocamllsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+-- todo: this doesn't seem to be working yet
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+}
+
+lspconfig.gopls.setup({
+  on_attach = on_attach,
+})
 
 -- rust config is handled by simrat's rust-tools
 local rt = require("rust-tools")
