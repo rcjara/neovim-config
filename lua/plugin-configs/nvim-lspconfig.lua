@@ -81,15 +81,15 @@ lspconfig.lua_ls.setup {
   },
 }
 
-lspconfig.ocamllsp.setup {
+lspconfig.ocamllsp.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- todo: this doesn't seem to be working yet
-lspconfig.bashls.setup {
+lspconfig.bashls.setup({
   on_attach = on_attach,
-}
+})
 
 lspconfig.gopls.setup({
   on_attach = on_attach,
