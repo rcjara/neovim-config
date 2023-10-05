@@ -127,6 +127,18 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
+local run_uiua_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group =  run_uiua_fmt,
+  pattern = '*.ua',
+  callback = function (_bufnr)
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    -- todo: maybe used the language server
+    vim.schedule(function () vim.cmd("!uiua fmt %") end)
+    vim.schedule(function () vim.api.nvim_win_set_cursor(0, cursor) end)
+  end
+})
+
 local coq_key_bindings = vim.api.nvim_create_augroup('coq_key_bindings', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
   group =  coq_key_bindings,
