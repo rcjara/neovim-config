@@ -13,14 +13,6 @@ vim.opt.spelllang = 'en_us'
 -- todo: figure out status line
 -- vim.opt.statusline = '%-50(%-0f%-0m%-0r%-0h%) %(%l/%L%)'
 
--- colors
-vim.opt.background = 'dark'
-vim.cmd('colorscheme solarized')
-
--- line numbers
-vim.opt.number = true
-vim.opt.rnu = true
-
 -- substitution
 vim.opt.gdefault = true
 
@@ -32,13 +24,6 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
-
--- tab/eol
-vim.opt.list = true
-vim.opt.listchars = ''
-vim.opt.listchars:append('eol:¬')
-vim.opt.listchars:append('tab:▸ ')
-vim.opt.listchars:append('nbsp:¤')
 
 -------------------
 -- Global remaps --
@@ -75,7 +60,7 @@ nmap('<leader>ew', ':e <C-R>=expand("%:p:h") . "/" <CR>')
 nmap('<leader>es', ':sp <C-R>=expand("%:p:h") . "/" <CR>')
 nmap('<leader>ev', ':vsp <C-R>=expand("%:p:h") . "/" <CR>')
 nmap('<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>')
-nmap('<leader>ef', ':vsp <C-R><C-P><CR>')  --edit path under cursor
+nmap('<leader>ef', ':vsp <C-R><C-P><CR>') --edit path under cursor
 
 -- when using z to recenter around the cursor, don't go all the way to the top or bottom
 nmap('zb', 'zb5<C-E>')
@@ -90,7 +75,18 @@ nmap('<leader>cx', ':let @/ = ""<CR>')
 
 local tmap = utils.remaps.tmap
 
-tmap('<Esc>','<C-\\><C-N>')
+tmap('<Esc>', '<C-\\><C-N>')
+
+---------------
+-- filetypes --
+---------------
+--todo consider gathering the uiua stuff into a plugin
+vim.filetype.add({extension= {ua = 'uiua'}})
+
+---------------
+-- Split out --
+---------------
+require('appearance')
 
 -------------------------------
 -- individual plugin configs --
@@ -115,35 +111,37 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = remove_trailing_whitespace
 })
 
+--todo: create autogroup that autoformats if the lsp is attached and enables it
 local run_rust_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
-  group =  run_rust_fmt,
+  group = run_rust_fmt,
   pattern = '*.rs',
-  callback = function (_bufnr)
+  callback = function(_bufnr)
     local cursor = vim.api.nvim_win_get_cursor(0)
-    -- todo: maybe used the language server
-    vim.schedule(function () vim.cmd("!rustfmt --edition 2021 %") end)
-    vim.schedule(function () vim.api.nvim_win_set_cursor(0, cursor) end)
+    vim.lsp.buf.format()
+    vim.api.nvim_win_set_cursor(0, cursor)
   end
 })
 
-local run_uiua_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
+local run_uiua_fmt = vim.api.nvim_create_augroup('run_uiua_fmt', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
-  group =  run_uiua_fmt,
+  group = run_uiua_fmt,
   pattern = '*.ua',
-  callback = function (_bufnr)
+  callback = function(_bufnr)
     local cursor = vim.api.nvim_win_get_cursor(0)
-    -- todo: maybe used the language server
-    vim.schedule(function () vim.cmd("!uiua fmt %") end)
-    vim.schedule(function () vim.api.nvim_win_set_cursor(0, cursor) end)
+    vim.schedule(function ()
+      vim.cmd("!uiua fmt %")
+    end)
+    --vim.lsp.buf.format()
+    vim.api.nvim_win_set_cursor(0, cursor)
   end
 })
 
 local coq_key_bindings = vim.api.nvim_create_augroup('coq_key_bindings', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
-  group =  coq_key_bindings,
+  group = coq_key_bindings,
   pattern = '*.v',
-  callback = function (_bufnr)
+  callback = function(_bufnr)
     nmap('<C-space>', ':CoqNext<CR>')
     nmap('<C-p>', ':CoqPrev<CR>')
     nmap('<space><space>', ':CoqToLine<CR>')

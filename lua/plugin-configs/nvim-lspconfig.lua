@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
   nmap('<leader>cD', vim.lsp.buf.type_definition)
   nmap('<leader>cr', vim.lsp.buf.rename)
   nmap('<leader>ca', vim.lsp.buf.code_action)
-  nmap('<leader>cf', vim.lsp.buf.formatting)
+  nmap('<leader>cf', vim.lsp.buf.format)
   nmap('<leader>cwl', function () print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 
   print(client.name .. ' language server attached')
@@ -43,43 +43,45 @@ end
 -- lua lsp install cmd:
 -- brew install lua-language-server
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 -- Setup lspconfig.
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 local lspconfig = require('lspconfig')
 
-lspconfig.lua_ls.setup {
+lspconfig.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
 
-    },
-  },
-}
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        }
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
+})
 
 lspconfig.ocamllsp.setup({
   on_attach = on_attach,
@@ -89,18 +91,24 @@ lspconfig.ocamllsp.setup({
 -- todo: this doesn't seem to be working yet
 lspconfig.bashls.setup({
   on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 lspconfig.gopls.setup({
   on_attach = on_attach,
+  capabilities = capabilities,
 })
 
+--lspconfig.uiua_ls.setup({
+--  on_attach = on_attach,
+--})
 -- rust config is handled by simrat's rust-tools
 local rt = require("rust-tools")
 
 rt.setup({
   server = {
     on_attach = on_attach,
+    capabilities = capabilities,
   },
 })
 

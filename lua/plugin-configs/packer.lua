@@ -8,6 +8,8 @@ return packer.startup(function()
   -- color schemes --
   -------------------
   use 'ishan9299/nvim-solarized-lua'
+  use 'folke/tokyonight.nvim'
+  use 'bluz71/vim-nightfly-colors'
 
   ------------------
   -- real plugins --
@@ -24,6 +26,9 @@ return packer.startup(function()
 
   -- Collection of configurations for the built-in LSP client
   use 'neovim/nvim-lspconfig'
+  -- todo swap back to official lsp config once this fully works.
+  -- use '~/dev/nvim-plugs/nvim-lspconfig-uiua'
+
   use 'simrat39/rust-tools.nvim'  -- rust lps config
 
   -- lsp / dap / linters installation and configurations

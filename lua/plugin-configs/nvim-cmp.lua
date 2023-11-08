@@ -21,7 +21,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = { i = cmp.mapping.select_next_item({}) },
     ['<C-f>'] = { i = cmp.mapping.scroll_docs(4) },
-    ['<C-k>'] = { i = cmp.mapping.confirm({ select = true }) },
+    ['<C-l>'] = { i = cmp.mapping.confirm({ select = true }) },
     ['<C-e>'] = { i = cmp.mapping.abort() },
     ['<CR>'] = { i = cmp.mapping.confirm({ select = true }) }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<C-n>"] = cmp.mapping(function(fallback)
