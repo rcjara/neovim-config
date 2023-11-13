@@ -27,6 +27,8 @@ local on_attach = function(client, bufnr)
   nmap('<leader>ck', vim.lsp.buf.signature_help)
   nmap('<leader>cwa', vim.lsp.buf.add_workspace_folder)
   nmap('<leader>cwr', vim.lsp.buf.remove_workspace_folder)
+  -- todo make this work
+  --nmap('<leader>cd', vim.diagnostic.open_float)
   nmap('<leader>cD', vim.lsp.buf.type_definition)
   nmap('<leader>cr', vim.lsp.buf.rename)
   nmap('<leader>ca', vim.lsp.buf.code_action)
