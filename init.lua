@@ -30,6 +30,7 @@ vim.opt.shiftwidth = 2
 -------------------
 
 vim.g.mapleader = ','
+vim.g.maplocalleader = ',,'
 
 local nmap = utils.remaps.nmap
 local imap = utils.remaps.imap

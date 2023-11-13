@@ -43,6 +43,9 @@ return packer.startup(function()
   -- coq
   use 'whonore/Coqtail'
 
+  -- agda
+  use 'ashinkarov/nvim-agda'
+
   ---------------------
   -- code completion --
   ---------------------
