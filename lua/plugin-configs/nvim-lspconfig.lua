@@ -14,8 +14,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Diagnostic specific mappings
-  nmap('gn', vim.diagnostic.goto_next)
-  nmap('gN', vim.diagnostic.goto_prev)
+  nmap('gn', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR}) end)
+  nmap('gN', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR}) end)
+  nmap('gw', vim.diagnostic.goto_next)
+  nmap('gW', vim.diagnostic.goto_prev)
 
   -- LSP specific Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
