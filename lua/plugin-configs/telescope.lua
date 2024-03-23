@@ -20,7 +20,7 @@ telescope.setup {
       '--line-number',
       '--column',
       '--smart-case',
-      '-u' -- also search in gitignore files
+      '--no-ignore-files', -- also search in gitignore files
     },
   },
   extensions = {
@@ -36,7 +36,8 @@ telescope.setup {
 
 
 nmap('<leader>ff', builtin.find_files)
-nmap('<leader>fg', builtin.live_grep)
+nmap('<leader>fa', function() builtin.find_files({no_ignore = true}) end)
+nmap('<leader>fg', function() builtin.live_grep({additional_args = {"--no-ignore"}}) end)
 nmap('<leader>fb', builtin.buffers)
 nmap('<leader>fh', builtin.help_tags)
 
