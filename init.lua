@@ -4,11 +4,6 @@ local utils = require('utils')
 -- global options --
 --------------------
 
---------------
--- spelling --
---------------
-vim.opt.spelllang = 'en_us'
-
 -- status line
 -- todo: figure out status line
 -- vim.opt.statusline = '%-50(%-0f%-0m%-0r%-0h%) %(%l/%L%)'
@@ -69,7 +64,12 @@ nmap('zt', 'zt5<C-Y>')
 
 -- clear search
 nmap('<leader>cx', ':let @/ = ""<CR>')
---
+
+-- spelling
+vim.opt.spelllang = 'en_us'
+nmap('<leader>sp', ':setlocal spell<CR>')
+nmap('<leader>so', ':setlocal spell!<CR>')
+
 ---------------------
 -- Terminal remaps --
 ---------------------
