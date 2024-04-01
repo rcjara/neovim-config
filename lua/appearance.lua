@@ -1,7 +1,7 @@
 local utils = require('utils')
 
 -- colors
-vim.cmd('colorscheme nightfly')
+vim.cmd('colorscheme tokyonight-storm')
 vim.opt.background = 'dark'
 
 -- line numbers

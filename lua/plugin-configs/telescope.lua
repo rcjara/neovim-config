@@ -40,6 +40,7 @@ nmap('<leader>fa', function() builtin.find_files({no_ignore = true}) end)
 nmap('<leader>fg', function() builtin.live_grep({additional_args = {"--no-ignore"}}) end)
 nmap('<leader>fb', builtin.buffers)
 nmap('<leader>fh', builtin.help_tags)
+nmap('<leader>fc', builtin.colorscheme)
 
 telescope.load_extension('emoji')
 nmap('<leader>em', telescope.extensions.emoji.emoji)
