@@ -8,6 +8,11 @@ vim.opt.background = 'dark'
 vim.opt.number = true
 vim.opt.rnu = true
 
+-- status line
+vim.opt.laststatus=2
+vim.opt.statusline = '%-n:%-50(%f%m%r%h%20y%) %(%l:%c / %L%)'
+
+
 -- tab/eol
 vim.opt.list = true
 vim.opt.listchars = ''

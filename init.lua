@@ -4,10 +4,6 @@ local utils = require('utils')
 -- global options --
 --------------------
 
--- status line
--- todo: figure out status line
--- vim.opt.statusline = '%-50(%-0f%-0m%-0r%-0h%) %(%l/%L%)'
-
 -- substitution
 vim.opt.gdefault = true
 
