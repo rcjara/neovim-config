@@ -36,7 +36,7 @@ telescope.setup {
 
 
 nmap('<leader>ff', builtin.find_files)
-nmap('<leader>fa', function() builtin.find_files({no_ignore = true}) end)
+nmap('<leader>fa', function() builtin.find_files({no_ignore = true, hidden = true}) end)
 nmap('<leader>fg', function() builtin.live_grep({additional_args = {"--no-ignore"}}) end)
 nmap('<leader>fb', builtin.buffers)
 nmap('<leader>fh', builtin.help_tags)

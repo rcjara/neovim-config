@@ -84,6 +84,7 @@ vim.filetype.add({ extension = { ua = 'uiua' } })
 -- Split out --
 ---------------
 require('appearance')
+require('format-on-save')
 
 -------------------------------
 -- individual plugin configs --
@@ -100,42 +101,6 @@ require('plugin-configs/nvim-cmp')
 ------------------
 -- autocommands --
 ------------------
-
-local remove_trailing_whitespace = vim.api.nvim_create_augroup('remove_trailing_whitespace', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  command = '%s/\\s\\+$//e',
-  group = remove_trailing_whitespace
-})
-
-local run_rust_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = run_rust_fmt,
-  pattern = '*',
-  callback = function(_event)
-    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-    if clients and clients[1] and clients[1]['server_capabilities'] and clients[1]['server_capabilities']['documentFormattingProvider'] then
-      local cursor = vim.api.nvim_win_get_cursor(0)
-      vim.lsp.buf.format()
-      vim.api.nvim_win_set_cursor(0, cursor)
-    end
-  end
-})
-
--- todo: confirm the above works with uiua and then delete this
-local run_uiua_fmt = vim.api.nvim_create_augroup('run_uiua_fmt', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = run_uiua_fmt,
-  pattern = '*.ua',
-  callback = function(_bufnr)
-    local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.schedule(function()
-      vim.cmd("!uiua fmt %")
-    end)
-    --vim.lsp.buf.format()
-    vim.api.nvim_win_set_cursor(0, cursor)
-  end
-})
 
 local coq_key_bindings = vim.api.nvim_create_augroup('coq_key_bindings', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
