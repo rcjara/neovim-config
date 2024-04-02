@@ -78,7 +78,7 @@ tmap('<Esc>', '<C-\\><C-N>')
 -- filetypes --
 ---------------
 --todo consider gathering the uiua stuff into a plugin
-vim.filetype.add({extension= {ua = 'uiua'}})
+vim.filetype.add({ extension = { ua = 'uiua' } })
 
 ---------------
 -- Split out --
@@ -108,25 +108,28 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = remove_trailing_whitespace
 })
 
---todo: create autogroup that autoformats if the lsp is attached and enables it
 local run_rust_fmt = vim.api.nvim_create_augroup('run_rust_fmt', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = run_rust_fmt,
-  pattern = '*.rs',
-  callback = function(_bufnr)
-    local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.lsp.buf.format()
-    vim.api.nvim_win_set_cursor(0, cursor)
+  pattern = '*',
+  callback = function(_event)
+    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    if clients and clients[1] and clients[1]['server_capabilities'] and clients[1]['server_capabilities']['documentFormattingProvider'] then
+      local cursor = vim.api.nvim_win_get_cursor(0)
+      vim.lsp.buf.format()
+      vim.api.nvim_win_set_cursor(0, cursor)
+    end
   end
 })
 
+-- todo: confirm the above works with uiua and then delete this
 local run_uiua_fmt = vim.api.nvim_create_augroup('run_uiua_fmt', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = run_uiua_fmt,
   pattern = '*.ua',
   callback = function(_bufnr)
     local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.schedule(function ()
+    vim.schedule(function()
       vim.cmd("!uiua fmt %")
     end)
     --vim.lsp.buf.format()

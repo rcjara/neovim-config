@@ -4,7 +4,7 @@ function P(obj)
   print (vim.inspect(obj))
 end
 
-local function Y(obj, reg)
+function Y(obj, reg)
   if not reg then
     reg = '"'
   end
