@@ -14,7 +14,7 @@ local ts_langs = {
   'rust',
 }
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = ts_langs,
 
@@ -22,7 +22,7 @@ require'nvim-treesitter.configs'.setup {
   sync_install = true,
 
   -- List of parsers to ignore installing
-  ignore_install = { },
+  ignore_install = {},
 
   highlight = {
     -- `false` will disable the whole extension

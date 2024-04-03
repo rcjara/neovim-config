@@ -39,7 +39,7 @@ local snips = {
     f(function(args, _snip, _opts)
       local path = args[1][1]
       if path then
-        return utils.path.basename(path):gsub('-','_')
+        return utils.path.basename(path):gsub('-', '_')
       else
         return "default"
       end

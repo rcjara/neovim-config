@@ -1,6 +1,6 @@
 local utils = require('utils')
 local packer = require('packer')
-utils.setup_au_reload_command({'PackerInstall','PackerCompile'})
+utils.setup_au_reload_command({ 'PackerInstall', 'PackerCompile' })
 
 return packer.startup(function()
   local use = packer.use
@@ -20,8 +20,8 @@ return packer.startup(function()
 
   -- treesitter highlighting, colors, etc.
   use {
-        'nvim-treesitter/nvim-treesitter',
-          run = ':TSUpdate'
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
   }
   -- todo: treesitter code actions
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
@@ -31,8 +31,8 @@ return packer.startup(function()
   -- todo check to see that uiua lsp still works before deleting this
   -- use '~/dev/nvim-plugs/nvim-lspconfig-uiua'
 
-  use 'folke/neodev.nvim' -- lua specific lsp setup
-  use 'simrat39/rust-tools.nvim'  -- rust lps config
+  use 'folke/neodev.nvim'        -- lua specific lsp setup
+  use 'simrat39/rust-tools.nvim' -- rust lps config
 
   -- lsp / dap / linters installation and configurations
   use 'williamboman/mason.nvim'
@@ -65,14 +65,13 @@ return packer.startup(function()
   -- telescope, fzf style search and autocomplete
   use {
     'nvim-telescope/telescope.nvim',
-      requires = {
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-telescope/telescope-fzy-native.nvim'}
-      }
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzy-native.nvim' }
+    }
   }
 
   use 'xiyaowong/telescope-emoji.nvim'
 
   utils.print_filename_on_reload()
 end)
-

@@ -5,7 +5,7 @@ local utils = require('utils')
 ----------------
 
 local on_attach = function(client, bufnr)
-  local opts = { noremap = true; buffer = bufnr }
+  local opts = { noremap = true, buffer = bufnr }
   local nmap = function(lhs, rhs)
     vim.keymap.set('n', lhs, rhs, opts)
   end
@@ -14,8 +14,8 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Diagnostic specific mappings
-  nmap('gn', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR}) end)
-  nmap('gN', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR}) end)
+  nmap('gn', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end)
+  nmap('gN', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end)
   nmap('gw', vim.diagnostic.goto_next)
   nmap('gW', vim.diagnostic.goto_prev)
 
@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
   nmap('<leader>cr', vim.lsp.buf.rename)
   nmap('<leader>ca', vim.lsp.buf.code_action)
   nmap('<leader>cf', vim.lsp.buf.format)
-  nmap('<leader>cwl', function () print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
+  nmap('<leader>cwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 
   print(client.name .. ' language server attached')
 end

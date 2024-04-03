@@ -1,7 +1,7 @@
 local M = {}
 
 function P(obj)
-  print (vim.inspect(obj))
+  print(vim.inspect(obj))
 end
 
 function Y(obj, reg)
@@ -18,7 +18,7 @@ local function map(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { noremap = true })
 end
 
-local config_home_dir = vim.api.nvim_call_function('stdpath',{'config'})
+local config_home_dir = vim.api.nvim_call_function('stdpath', { 'config' })
 
 local function this_file_rel()
   local source = debug.getinfo(3, "S").source
