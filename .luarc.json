@@ -1,0 +1,31 @@
+{
+    "workspace.library": [
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/stable",
+        "/opt/homebrew/Cellar/neovim/0.9.5/share/nvim/runtime/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp-buffer/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-document-symbol/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp-path/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/cmp_luasnip/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/LuaSnip/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/mason.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/neodev.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/nvim-agda/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/nvim-cmp/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/nvim-solarized-lua/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/packer.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/plenary.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/rust-tools.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/telescope-emoji.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/telescope.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/tokyonight.nvim/lua",
+        "/Users/rjara/.local/share/nvim/site/pack/packer/start/vim-nightfly-colors/lua",
+        "/Users/rjara/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}
