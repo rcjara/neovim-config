@@ -33,21 +33,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
--- todo: confirm the above works with uiua and then delete this
-local run_uiua_fmt = vim.api.nvim_create_augroup('run_uiua_fmt', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = run_uiua_fmt,
-  pattern = '*.ua',
-  callback = function(_bufnr)
-    local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.schedule(function()
-      vim.cmd("!uiua fmt %")
-    end)
-    --vim.lsp.buf.format()
-    vim.api.nvim_win_set_cursor(0, cursor)
-  end
-})
-
-
 utils.setup_au_reload_command()
 utils.print_filename_on_reload()

@@ -84,9 +84,10 @@ lspconfig.gopls.setup({
   capabilities = capabilities,
 })
 
---lspconfig.uiua_ls.setup({
---  on_attach = on_attach,
---})
+lspconfig.uiua.setup({
+  on_attach = on_attach,
+})
+
 -- rust config is handled by simrat's rust-tools
 local rt = require("rust-tools")
 
