@@ -73,7 +73,6 @@ lspconfig.ocamllsp.setup({
   capabilities = capabilities,
 })
 
--- todo: this doesn't seem to be working yet
 lspconfig.bashls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
