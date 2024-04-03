@@ -5,10 +5,8 @@ local builtin = require('telescope.builtin')
 telescope.setup {
   defaults = {
     prompt_prefix = "= ",
-    -- todo: ask someone how the hell mappings work
     mappings = {
-      n = {
-        -- this line currently does nothing, even though I believe it should turn off a telescope default key command
+      i = {
         ['<C-t>'] = false,
       }
     },
