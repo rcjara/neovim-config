@@ -24,7 +24,7 @@ return packer.startup(function()
     run = ':TSUpdate'
   }
   -- todo: treesitter code actions
-  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
 
   -- Collection of configurations for the built-in LSP client
   use 'neovim/nvim-lspconfig'

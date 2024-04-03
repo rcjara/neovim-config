@@ -92,6 +92,7 @@ require('format-on-save')
 -- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
 require('plugin-configs/packer')
 require('plugin-configs/nvim-treesitter')
+require('plugin-configs/nvim-treesitter-textobjects')
 require('plugin-configs/mason')
 require('plugin-configs/nvim-lspconfig')
 require('plugin-configs/luasnip')
