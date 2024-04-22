@@ -1,5 +1,11 @@
 local utils = require('utils')
 
+-----------------------------
+-- must be set before lazy --
+-----------------------------
+vim.g.mapleader = ','
+vim.g.maplocalleader = ',,'
+
 -----------------------------------
 -- lazy plugin manager bootstrap --
 -----------------------------------
@@ -38,8 +44,6 @@ vim.opt.shiftwidth = 2
 -- Global remaps --
 -------------------
 
-vim.g.mapleader = ','
-vim.g.maplocalleader = ',,'
 
 local nmap = utils.remaps.nmap
 local imap = utils.remaps.imap

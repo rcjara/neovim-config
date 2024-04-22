@@ -4,13 +4,6 @@ utils.setup_au_reload_command({ 'PackerInstall', 'PackerCompile' })
 
 return packer.startup(function()
   local use = packer.use
-  -------------------
-  -- color schemes --
-  -------------------
-  use 'ishan9299/nvim-solarized-lua'
-  use 'folke/tokyonight.nvim'
-  use 'bluz71/vim-nightfly-colors'
-
   ------------------
   -- real plugins --
   ------------------
@@ -59,19 +52,6 @@ return packer.startup(function()
   use "hrsh7th/cmp-nvim-lsp-document-symbol"
   use "saadparwaiz1/cmp_luasnip"
 
-  ----------------------------
-  -- telescope + extensions --
-  ----------------------------
-  -- telescope, fzf style search and autocomplete
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzy-native.nvim' }
-    }
-  }
-
-  use 'xiyaowong/telescope-emoji.nvim'
 
   utils.print_filename_on_reload()
 end)
