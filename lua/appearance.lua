@@ -1,7 +1,7 @@
 local utils = require('utils')
 
 -- colors
-vim.cmd('colorscheme tokyonight-storm')
+-- colorscheme set in lua/plugin-configs/colorschemes.lua
 vim.opt.background = 'dark'
 
 -- line numbers

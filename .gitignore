@@ -1,3 +1,4 @@
 plugin/packer_compiled.lua
 lua/.luarc.json
 spell/en.utf-8.add.spl
+lazy-lock.json

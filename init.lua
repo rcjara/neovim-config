@@ -1,5 +1,23 @@
 local utils = require('utils')
---
+
+-----------------------------------
+-- lazy plugin manager bootstrap --
+-----------------------------------
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup("plugin-configs-new")
+
 --------------------
 -- global options --
 --------------------
@@ -86,18 +104,19 @@ vim.filetype.add({ extension = { ua = 'uiua' } })
 require('appearance')
 require('format-on-save')
 
--------------------------------
--- individual plugin configs --
--------------------------------
--- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
-require('plugin-configs/packer')
-require('plugin-configs/nvim-treesitter')
-require('plugin-configs/nvim-treesitter-textobjects')
-require('plugin-configs/mason')
-require('plugin-configs/nvim-lspconfig')
-require('plugin-configs/luasnip')
-require('plugin-configs/telescope')
-require('plugin-configs/nvim-cmp')
+
+-- -------------------------------
+-- -- individual plugin configs --
+-- -------------------------------
+-- -- these come after our default mappings in case plugins have overwritten remaps for particular filetypes, etc.
+-- require('plugin-configs/packer')
+-- require('plugin-configs/nvim-treesitter')
+-- require('plugin-configs/nvim-treesitter-textobjects')
+-- require('plugin-configs/mason')
+-- require('plugin-configs/nvim-lspconfig')
+-- require('plugin-configs/luasnip')
+-- require('plugin-configs/telescope')
+-- require('plugin-configs/nvim-cmp')
 
 ------------------
 -- autocommands --
