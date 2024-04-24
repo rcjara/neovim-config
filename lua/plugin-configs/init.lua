@@ -11,14 +11,6 @@ return packer.startup(function()
   -- Packer plugin manager (using it here)
   use 'wbthomason/packer.nvim'
 
-  -- treesitter highlighting, colors, etc.
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  -- todo: treesitter code actions
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-
   -- Collection of configurations for the built-in LSP client
   use 'neovim/nvim-lspconfig'
   -- todo check to see that uiua lsp still works before deleting this
