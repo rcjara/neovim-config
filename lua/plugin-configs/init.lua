@@ -31,26 +31,11 @@ return packer.startup(function()
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
-  -- snippets
-  use 'L3MON4D3/LuaSnip'
-  use 'rafamadriz/friendly-snippets'
-
   -- coq
   use 'whonore/Coqtail'
 
   -- agda
   use 'ashinkarov/nvim-agda'
-
-  ---------------------
-  -- code completion --
-  ---------------------
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lua"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lsp-document-symbol"
-  use "saadparwaiz1/cmp_luasnip"
 
 
   utils.print_filename_on_reload()
