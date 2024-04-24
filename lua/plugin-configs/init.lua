@@ -11,18 +11,6 @@ return packer.startup(function()
   -- Packer plugin manager (using it here)
   use 'wbthomason/packer.nvim'
 
-  -- Collection of configurations for the built-in LSP client
-  use 'neovim/nvim-lspconfig'
-  -- todo check to see that uiua lsp still works before deleting this
-  -- use '~/dev/nvim-plugs/nvim-lspconfig-uiua'
-
-  use 'folke/neodev.nvim'        -- lua specific lsp setup
-  use 'simrat39/rust-tools.nvim' -- rust lps config
-
-  -- lsp / dap / linters installation and configurations
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-
   -- coq
   use 'whonore/Coqtail'
 
